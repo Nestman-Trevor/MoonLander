@@ -1,0 +1,50 @@
+//
+//  lander.h
+//  Project2
+//
+//  Created by Trevor on 2/23/15.
+//  Copyright (c) 2015 Trevor. All rights reserved.
+//
+
+#ifndef __Project2__lander__
+#define __Project2__lander__
+
+#include <stdio.h>
+#include "velocity.h"
+
+#define GRAVITY .05
+#define FUEL 500
+
+class Lander
+{
+private:
+    int fuel;
+    Velocity velocity;
+    
+public:
+    //constructors
+    Lander():       velocity(), fuel(FUEL)   {                                   };
+    Lander(float x, float y):  fuel(FUEL)    {velocity.setX(x); velocity.setY(y);};
+    //~Lander() {delete fuel;};
+    
+    //advance the game
+    void advance(bool bLeft, bool bRight, bool bUp);
+    
+    //getters
+    int getFuel()    const  {return fuel;                   };
+    Point getPoint() const  {return velocity.getPoint();    };
+    float getDx()    const  {return velocity.getDx();       };
+    float getDy()    const  {return velocity.getDy();       };
+    float getX()     const  {return velocity.getX();        };
+    float getY()     const  {return velocity.getY();        };
+    
+    //setters
+    void setPoint(Point newPoint)  {velocity.setPoint(newPoint);   };
+    void setDx(float newDx)        {velocity.setDx(newDx);         };
+    void setDy(float newDy)        {velocity.setDy(newDy);         };
+    
+    //draw the lander
+    void draw() const;
+    
+};
+#endif /* defined(__Project2__lander__) */
